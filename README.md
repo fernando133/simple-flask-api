@@ -33,3 +33,9 @@ Should create the file ```script_conf.json``` in the directory ```/config``` wit
 
 ### CURL example to POST request  for directly message broadcast to telegram
 ```curl -i -H "Content-Type: application/json" -X POST -d '{"bot":"bot_id", "chat_id":"chat_id", "msg":"Message here..."}' http://localhost:5000/broadcast```
+
+### Routes
+
+```@app.route("/lead/<name>/<email>/<origin>/<alert>", methods=['GET'])```
+
+```@app.route("/campaing/<origin>", methods=['GET'])```
