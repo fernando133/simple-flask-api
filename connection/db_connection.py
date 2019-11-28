@@ -6,7 +6,7 @@ class DBConnection:
 		self.localhost = '127.0.0.1'
 		self.username  = 'root'
 		self.password  = 'root'
-		self.database  = 'flask'
+		self.database  = 'marketing'
 
 	def get_connection(self):
 		mydb     = mysql.connector.connect(
