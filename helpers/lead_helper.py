@@ -13,11 +13,14 @@ class LeadHelper:
 	    elif string == 'False':
 	         return False
 
+	def add_lead(name, email, origin, alert):
+		pass
+
 	def insert_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
 		cursor = self.connection.cursor()
 		now = datetime.datetime.utcnow()
-		sql    = "INSERT INTO lead (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-		val    = (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert, now)
+		sql    = "INSERT INTO lead (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+		val    = (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, now)
 		cursor.execute(sql, val)
 		self.connection.commit()
 		print(cursor.rowcount, "lead inserted.")
