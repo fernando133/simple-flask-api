@@ -58,3 +58,12 @@ CREATE TABLE `lead` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-11-25 12:12:12
+
+ALTER TABLE `marketing`.`lead` 
+ADD COLUMN `necessity` VARCHAR(45) NULL AFTER `date_time`,
+ADD COLUMN `enterprise` VARCHAR(45) NULL AFTER `necessity`,
+ADD COLUMN `role` VARCHAR(45) NULL AFTER `enterprise`,
+ADD COLUMN `state` VARCHAR(45) NULL AFTER `role`,
+ADD COLUMN `city` VARCHAR(45) NULL AFTER `state`,
+ADD COLUMN `phone` VARCHAR(45) NULL AFTER `city`,
+ADD COLUMN `celphone` VARCHAR(45) NULL AFTER `phone`;
