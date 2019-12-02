@@ -13,18 +13,18 @@ class LeadHelper:
 	    elif string == 'False':
 	         return False
 
-	def insert_lead(self, name, email, origin, alert):
+	def insert_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
 		cursor = self.connection.cursor()
 		now = datetime.datetime.utcnow()
-		sql    = "INSERT INTO lead (name, email, origin, date_time) VALUES (%s, %s, %s, %s)"
-		val    = (name, email, origin, now)
+		sql    = "INSERT INTO lead (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+		val    = (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert, now)
 		cursor.execute(sql, val)
 		self.connection.commit()
 		print(cursor.rowcount, "lead inserted.")
 		alert = self.str_to_bool(alert)
 		if(alert):
 			th = TelegramHelper()
-			th.broadcast_alert("Novo+Lead")
+			th.broadcast_alert("Novo+Lead: ")
 
 		return "200"
 

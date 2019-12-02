@@ -14,10 +14,10 @@ def authorize(_token):
 	else:
 		return False
 
-@app.route("/lead/<name>/<email>/<origin>/<alert>", methods=['GET'])
-def add_lead(name, email, origin, alert):
+@app.route("/lead/<name>/<email>/<necessity>/<enterprise>/<role>/<state>/<city>/<phone>/<celphone>/<origin>/<alert>", methods=['GET'])
+def add_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
 	lh = LeadHelper()
-	return lh.insert_lead(name, email, origin, alert)
+	return lh.insert_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert)
 
 @app.route("/campaing/<origin>", methods=['GET'])
 def compute_access(origin):

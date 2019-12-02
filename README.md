@@ -36,6 +36,6 @@ Should create the file ```script_conf.json``` in the directory ```/config``` wit
 
 ### Routes
 
-```@app.route("/lead/<name>/<email>/<origin>/<alert>", methods=['GET'])```
+```@app.route("/lead/<name>/<email>/<necessity>/<enterprise>/<role>/<state>/<city>/<phone>/<celphone>/<origin>/<alert>", methods=['GET']))```
 
 ```@app.route("/campaing/<origin>", methods=['GET'])```
