@@ -36,16 +36,5 @@ def broadcast_post():
 	else:
 		return "invalid token"
 
-@app.route("/addlead", methods=['POST'])
-def insert_lead():
-	data = request.json
-	json_str = json.dumps(data)
-	resp = json.loads(json_str)
-	name, email, necessity, enterprise = resp['name'], resp['email'], resp['necessity'], resp['enterprise']
-	role, state, city, phone, celphone = resp['role'], resp['state'], resp['city'], resp['phone'], resp['celphone']
-	origin, alert = resp['origin'], resp['alert']
-	return lh.insert_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert)
-	
-
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000)
