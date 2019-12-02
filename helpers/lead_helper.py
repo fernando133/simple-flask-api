@@ -16,7 +16,7 @@ class LeadHelper:
 	def add_lead(name, email, origin, alert):
 		pass
 
-	def insert_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
+	def insert_lead(self, name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
 		cursor = self.connection.cursor()
 		now = datetime.datetime.utcnow()
 		sql    = "INSERT INTO lead (name, email, necessity, enterprise, role, state, city, phone, celphone, origin, date_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
