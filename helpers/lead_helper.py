@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from connection.db_connection import DBConnection
 from helpers.telegram_helper import TelegramHelper
 import datetime
