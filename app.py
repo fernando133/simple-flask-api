@@ -36,22 +36,22 @@ def compute_access(origin):
 def nova_inscricao():
 	try:
 		if 'historico_escolar' in request.files:
-	        historico_escolar = request.files['historico_escolar']
-	        if historico_escolar.filename != '':            
-	            historico_escolar.save(os.path.join('C:/Users/Public/Pictures', historico_escolar.filename))
+	    		historico_escolar = request.files['historico_escolar']
+	        	if historico_escolar.filename != '':            
+	            		historico_escolar.save(os.path.join('/root/files', historico_escolar.filename))
 
 	 	if 'diploma' in request.files:
-	        diploma = request.files['diploma']
-	        if diploma.filename != '':            
-	            diploma.save(os.path.join('C:/Users/Public/Pictures', diploma.filename))
-    except:
-    	return 500
+	        	diploma = request.files['diploma']
+	        	if diploma.filename != '':            
+	            		diploma.save(os.path.join('/root/files', diploma.filename))
+    	except:
+    		return 500
 
 	data = request.json
 	json_str = json.dumps(data)
 	resp = json.loads(json_str)
 	lh = LeadHelper()
-	return lh.nova_inscricao(resp)
+	return lh.nova_inscricao(resp, historico_escolar.filename, diploma.filename)
 
 @app.route("/broadcast", methods=['POST'])
 def broadcast_post():
