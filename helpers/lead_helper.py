@@ -3,6 +3,7 @@ from connection.db_connection import DBConnection
 from helpers.telegram_helper import TelegramHelper
 import datetime
 
+
 class LeadHelper:
 	def __init__(self):
 		self.db = DBConnection()

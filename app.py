@@ -4,10 +4,17 @@ from flask import request, jsonify
 import urllib2
 import json
 from helpers.lead_helper import LeadHelper
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+UPLOAD_FOLDER = '/path/to/the/uploads'
 base_url = 'https://api.telegram.org/'
 TOKEN = '1234'
+
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def authorize(_token):
 	if _token == TOKEN:
@@ -27,6 +34,19 @@ def compute_access(origin):
 
 @app.route("/inscricao", methods=['POST'])
 def nova_inscricao():
+	try:
+		if 'historico_escolar' in request.files:
+	        historico_escolar = request.files['historico_escolar']
+	        if historico_escolar.filename != '':            
+	            historico_escolar.save(os.path.join('C:/Users/Public/Pictures', historico_escolar.filename))
+
+	 	if 'diploma' in request.files:
+	        diploma = request.files['diploma']
+	        if diploma.filename != '':            
+	            diploma.save(os.path.join('C:/Users/Public/Pictures', diploma.filename))
+    except:
+    	return 500
+
 	data = request.json
 	json_str = json.dumps(data)
 	resp = json.loads(json_str)
