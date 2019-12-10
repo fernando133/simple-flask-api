@@ -25,6 +25,14 @@ def compute_access(origin):
 	lh = LeadHelper()
 	return lh.compute_access(origin)
 
+@app.route("/inscricao", methods=['POST'])
+def nova_inscricao():
+	data = request.json
+	json_str = json.dumps(data)
+	resp = json.loads(json_str)
+	lh = LeadHelper()
+	return lh.nova_inscricao(resp)
+
 @app.route("/broadcast", methods=['POST'])
 def broadcast_post():
 	data = request.json
