@@ -34,6 +34,8 @@ def compute_access(origin):
 
 @app.route("/inscricao", methods=['POST'])
 def nova_inscricao():
+	historico_escolar = None
+	diploma = None
 	try:
 		if 'historico_escolar' in request.files:
 	    		historico_escolar = request.files['historico_escolar']
