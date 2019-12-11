@@ -50,7 +50,7 @@ class LeadHelper:
 	def formata_inscricao():
 		pass
 
-	def nova_inscricao(self, data, historico_escolar, diploma):
+	def nova_inscricao(self, data, historico, diploma):
 		alert = True
 		cursor = self.connection.cursor()
 		now = datetime.datetime.utcnow()
@@ -62,7 +62,7 @@ class LeadHelper:
 		val    = (data['nome_completo'], data['data_nascimento'], data['rg'], data['cpf'],\
 		data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
 		data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
-		data['formacao'], data['foco_aulas'], historico_escolar, diploma, now)
+		data['formacao'], data['foco_aulas'], historico, diploma, now)
 		cursor.execute(sql, val)
 		self.connection.commit()
 		print(cursor.rowcount, "inscricao realizada.")

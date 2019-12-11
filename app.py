@@ -5,7 +5,7 @@ import urllib2
 import json
 from helpers.lead_helper import LeadHelper
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
@@ -32,28 +32,28 @@ def compute_access(origin):
 	lh = LeadHelper()
 	return lh.compute_access(origin)
 
-@app.route("/inscricao", methods=['POST'])
+@app.route('/inscricao', methods=['POST'])
 def nova_inscricao():
+	data = request.form
 	historico_escolar = None
 	diploma = None
 	try:
 		if 'historico_escolar' in request.files:
-	    		historico_escolar = request.files['historico_escolar']
-	        	if historico_escolar.filename != '':            
-	            		historico_escolar.save(os.path.join('/root/files', historico_escolar.filename))
+			historico_escolar = request.files['historico_escolar']
+			if historico_escolar.filename != '':
+				historico_escolar.save(os.path.join('/home/inline/files', historico_escolar.filename))
 
-	 	if 'diploma' in request.files:
-	        	diploma = request.files['diploma']
-	        	if diploma.filename != '':            
-	            		diploma.save(os.path.join('/root/files', diploma.filename))
-    	except:
-    		return 500
+		if 'diploma' in request.files:
+			diploma = request.files['diploma']
+			if diploma.filename != '':
+				diploma.save(os.path.join('/home/inline/files', diploma.filename))
+	except:
+		return 500
 
-	data = request.json
-	json_str = json.dumps(data)
-	resp = json.loads(json_str)
+	data = json.dumps(data)
+	data = json.loads(data)
 	lh = LeadHelper()
-	return lh.nova_inscricao(resp, historico_escolar.filename, diploma.filename)
+	return lh.nova_inscricao(data, historico_escolar.filename, diploma.filename)
 
 @app.route("/broadcast", methods=['POST'])
 def broadcast_post():
