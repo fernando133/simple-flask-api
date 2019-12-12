@@ -2,6 +2,8 @@
 from connection.db_connection import DBConnection
 from helpers.telegram_helper import TelegramHelper
 import datetime
+import calendar
+import time
 
 
 class LeadHelper:
@@ -14,6 +16,12 @@ class LeadHelper:
 	         return True
 	    elif string == 'False':
 	         return False
+
+	def get_file_name(self, filename):
+		ts = calendar.timegm(time.gmtime())
+		filename = str(ts)+filename
+		return filename
+
 
 	def insert_lead(self, name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
 		cursor = self.connection.cursor()
@@ -62,11 +70,10 @@ class LeadHelper:
 		val    = (data['nome_completo'], data['data_nascimento'], data['rg'], data['cpf'],\
 		data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
 		data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
-		data['formacao'], data['foco_aulas'], historico, diploma, now)
+		data['formacao'], data['foco_aulas'], self.get_file_name(historico), self.get_file_name(diploma), now)
 		cursor.execute(sql, val)
 		self.connection.commit()
 		print(cursor.rowcount, "inscricao realizada.")
-		alert = self.str_to_bool(alert)
 		if(alert):
 			th = TelegramHelper()
 			th.broadcast_alert("Nova+Inscricao: ")
