@@ -4,6 +4,7 @@ from helpers.telegram_helper import TelegramHelper
 import datetime
 import calendar
 import time
+from flask import Flask,redirect
 
 
 class LeadHelper:
@@ -76,6 +77,7 @@ class LeadHelper:
 		print(cursor.rowcount, "inscricao realizada.")
 		if(alert):
 			th = TelegramHelper()
-			th.broadcast_alert("Nova+Inscricao: ")
+			msg = "Nova+Inscricao:+Nome:+%s+e-mail+%s" %  (data['nome_completo'], data['email'])
+			th.broadcast_alert(msg)
 
-		return "200"
+		return redirect("http://www.mercadopago.com.br", code=302)
