@@ -7,6 +7,8 @@ from helpers.lead_helper import LeadHelper
 import os
 from flask import Flask, flash, redirect, url_for
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
+
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
 base_url = 'https://api.telegram.org/'
@@ -14,6 +16,8 @@ TOKEN = '1234'
 
 
 app = Flask(__name__)
+CORS(app)
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def authorize(_token):
