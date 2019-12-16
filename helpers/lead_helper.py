@@ -74,7 +74,7 @@ class LeadHelper:
             data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
             data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
             data['formacao'], data['foco_aulas'], self.get_file_name(historico), self.get_file_name(diploma),\
-            data['lingua_estrangeira'] data['assinatura'], now)
+            data['lingua_estrangeira'], data['assinatura'], now)
             cursor.execute(sql, val)
             self.connection.commit()
             print(cursor.rowcount, "inscricao realizada.")

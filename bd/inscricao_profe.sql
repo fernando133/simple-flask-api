@@ -1,4 +1,4 @@
-CREATE TABLE `flask`.`inscricao` (
+CREATE TABLE `inscricao` (
   `id` INT NOT NULL,
   `nome_completo` VARCHAR(100) NULL,
   `data_nascimento` DATE NULL,
@@ -19,3 +19,8 @@ CREATE TABLE `flask`.`inscricao` (
   `caminho_historico` VARCHAR(45) NULL,
   `caminho_diploma` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+
+ALTER TABLE `inscricao` 
+ADD COLUMN `assinatura` VARCHAR(45) NULL AFTER `date_time`,
+ADD COLUMN `lingua_estrangeira` VARCHAR(45) NULL AFTER `assinatura`;
+
