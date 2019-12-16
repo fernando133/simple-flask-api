@@ -1,0 +1,153 @@
+* {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+/************
+  Menu
+************/
+
+.menu {
+  background-color: #1621f2;
+}
+
+.menu nav a {
+  text-decoration: none;
+  color: #fff;
+
+}
+
+/************
+  Menu end
+************/
+
+
+/************
+  Logo
+************/
+
+.logo {
+  height: 100px;
+  background: #fff;
+}
+
+.logo img {
+  width: 380px;
+  height: 180px;
+  margin: 20px 0;
+}
+
+/************
+  Logo end
+************/
+
+
+/************
+  Apresentação
+************/
+
+.apresentacao {
+  background: #1621f2;
+  color: #fff;
+  height: 240px;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+.apresentacao div {
+ margin-top: 60px;
+}
+
+.apresentacao h3 {
+  margin-bottom: 30px;
+}
+/************
+  Apresentação end
+************/
+
+
+/************
+ Footer
+************/
+.footer {
+  width: 100%;
+  height: 90px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #1621f2;
+}
+
+/************
+ Footer end
+************/
+
+/************
+  Buttons
+*************/
+
+button {
+  background-color: #fff;
+  color: #1621f2;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 30px 20px 20px -10px;
+}
+
+button:hover {
+  opacity: 0.8;
+} 
+
+.btn-pagamento {
+  background-color: #fff;
+  color: #1621f2;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.btn-pagamento:hover {
+  text-decoration-line: none;
+  color: #1621f2;
+}
+
+/*      RESPONSIVIDADE        */
+
+@media only screen and (max-width: 767px) {
+  .apresentacao img, .form-right, .form-left {
+    display: none;
+  }
+
+  form .tab input, select {
+    margin: 0 15px 10px 15px;
+  }
+
+  .footer  {
+    height: 140px;
+  }
+} 
+
+
+@media only screen and (min-width: 768px) and (max-width: 812px) {
+  .apresentacao img, .form-right, .form-left {
+    display: none;
+  }
+
+  .form {
+    margin-left: 27%;
+    margin-top: -20px;
+  }
+  
+  form .tab input, select {
+    margin: 0 15px 10px 15px;
+  }
+
+  .footer  {
+    height: 140px;
+  }
+} 

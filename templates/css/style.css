@@ -1,0 +1,261 @@
+* {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+/************
+  Menu
+************/
+
+.menu {
+  background-color: #1621f2;
+}
+
+.menu nav a {
+  text-decoration: none;
+  color: #fff;
+
+}
+
+/************
+  Menu end
+************/
+
+
+/************
+  Logo
+************/
+
+.logo {
+  height: 100px;
+  background: #fff;
+}
+
+.logo img {
+  width: 180px;
+  height: 80px;
+  margin: 20px 0;
+}
+
+/************
+  Logo end
+************/
+
+
+/************
+  Apresentação
+************/
+
+.apresentacao {
+  background: #1621f2;
+  color: #fff;
+  height: 320px;
+}
+
+.apresentacao div {
+  margin-top: 30px;
+}
+
+.apresentacao img {
+  width: 340px;
+  height: 160px;
+}
+
+.apresentacao strong {
+  font-size: 22px;
+}
+
+.apresentacao .sub-title {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.apresentacao .sub-title p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/************
+  Apresentação end
+************/
+
+/************
+  Form
+************/
+.form-prof {
+  margin-top: -50px;
+  color: #1621f2;
+}
+.form {
+  background-color: #fff;
+  border: 10px solid #fff;
+  border-radius: 10px;
+}
+
+.form form {
+  border: 3px solid #1621f2;
+  border-radius: 5px;
+}
+
+.form-left, .form-right {
+  margin-top: 80px;
+}
+
+.form-left ul, .form-right ul {
+  list-style: none;
+}
+
+.form-left img, .form-right img {
+  width: 25px;
+  height: 25px;
+}
+
+.form-left h5, .form-right h5 {
+  margin-top: 80px;
+  font-weight: bold;
+}
+
+
+form h5 {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+form .tab label {
+  margin-left: 20px;
+}
+
+form .tab input, select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin: 0 0 20px 20px;
+  width: 90% !important;
+  height: 35px !important;
+}
+
+form input:focus {
+  outline: none;
+} 
+
+form .tab .file {
+  width: 90% !important;
+}
+
+form .tab .checkbox {
+  width: 14px !important;
+  height: 14px !important;
+  
+}
+
+form .tab .concordo {
+  margin-left: 5px;
+  align-items: center;
+}
+/************
+ Form end
+************/
+
+
+/************
+ Footer
+************/
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: #1621f2;
+}
+
+.footer h2 {
+  margin-top: 30px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/************
+ Footer end
+************/
+
+/************
+  Plugin Form
+*************/
+
+.tab {
+  display: none;
+}
+
+.controls {
+  display: inline-block;
+  margin: 0 0 20px 20px;
+}
+
+button {
+  background-color: #1621f2;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 0 20px 20px -10px;
+}
+
+button:hover {
+  opacity: 0.8;
+} 
+
+.btn-edital {
+  color: #ffffff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.btn-edital:hover {
+  color: #fff;
+  text-decoration-line: none;
+  opacity: 0.8;
+}
+
+
+/*      RESPONSIVIDADE        */
+
+@media only screen and (max-width: 767px) {
+  .apresentacao img, .form-right, .form-left {
+    display: none;
+  }
+
+  form .tab input, select {
+    margin: 0 15px 10px 15px;
+  }
+
+  .footer  {
+    height: 140px;
+  }
+} 
+
+
+@media only screen and (min-width: 768px) and (max-width: 812px) {
+  .apresentacao img, .form-right, .form-left {
+    display: none;
+  }
+
+  .form {
+    margin-left: 27%;
+    margin-top: -20px;
+  }
+  
+  form .tab input, select {
+    margin: 0 15px 10px 15px;
+  }
+
+  .footer  {
+    height: 140px;
+  }
+} 
