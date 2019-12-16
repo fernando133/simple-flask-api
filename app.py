@@ -14,7 +14,7 @@ UPLOAD_FOLDER = '/home/inline/files'
 base_url = 'https://api.telegram.org/'
 TOKEN = '1234'
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
 CORS(app)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
