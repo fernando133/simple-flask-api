@@ -67,13 +67,14 @@ class LeadHelper:
             now = datetime.datetime.utcnow()
             sql = "INSERT INTO inscricao (nome_completo, data_nascimento, rg, cpf, celular, email, \
             rua, numero, bairro, estado, cidade, cep, complemento, escolaridade, formacao, foco_aulas, \
-            caminho_historico, caminho_diploma, date_time) \
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            caminho_historico, caminho_diploma, lingua_estrangeira, assinatura, date_time) \
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
             val = (data['nome_completo'], data['data_nascimento'], data['rg'], data['cpf'],\
             data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
             data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
-            data['formacao'], data['foco_aulas'], self.get_file_name(historico), self.get_file_name(diploma), now)
+            data['formacao'], data['foco_aulas'], self.get_file_name(historico), self.get_file_name(diploma),\
+            data['lingua_estrangeira'] data['assinatura'], now)
             cursor.execute(sql, val)
             self.connection.commit()
             print(cursor.rowcount, "inscricao realizada.")

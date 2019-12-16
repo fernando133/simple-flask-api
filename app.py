@@ -27,11 +27,11 @@ def authorize(_token):
         return False
 
 def link_pagamento(foco_aulas):
-    if foco_aulas == "Ensino Superior":
+    if foco_aulas == "Superior":
         return "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=170979160-35cea3f4-9493-4f79-8c10-28d2f49240c0"
-    elif foco_aulas == "Ensino Médio":
+    elif foco_aulas == "Medio Tecnico":
         return "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=170979160-8c3b3867-c461-4b87-8706-c50dad81f746"
-    elif foco_aulas == "Ensino Fundamental":
+    elif foco_aulas == "Fundamental":
         return "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=170979160-ab29a5f6-b118-45e2-b768-83dde14a1a70"
 
 
