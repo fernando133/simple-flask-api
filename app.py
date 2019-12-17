@@ -33,6 +33,10 @@ def link_pagamento(foco_aulas):
     elif foco_aulas == "Fundamental":
         return "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=170979160-ab29a5f6-b118-45e2-b768-83dde14a1a70"
 
+def get_file_name(filename):
+    ts = calendar.timegm(time.gmtime())
+    filename = str(ts)+filename
+    return filename
 
 @app.route("/lead/<name>/<email>/<necessity>/<enterprise>/<role>/<state>/<city>/<phone>/<celphone>/<origin>/<alert>", methods=['GET'])
 def add_lead(name, email, necessity, enterprise, role, state, city, phone, celphone, origin, alert):
@@ -49,16 +53,19 @@ def nova_inscricao():
     data = request.form
     historico_escolar = None
     diploma = None
+
     try:
         if 'historico_escolar' in request.files:
             historico_escolar = request.files['historico_escolar']
             if historico_escolar.filename != '':
-                historico_escolar.save(os.path.join(app.config['UPLOAD_FOLDER'], historico_escolar.filename))
+                historico = get_file_name(historico_escolar.filename)
+                historico_escolar.save(os.path.join(app.config['UPLOAD_FOLDER'], historico))
 
         if 'diploma' in request.files:
             diploma = request.files['diploma']
             if diploma.filename != '':
-                diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma.filename))
+                diploma = get_file_name(diploma.filename)
+                diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma))
     except:
         return 500
 
@@ -77,7 +84,7 @@ def broadcast_post():
     json_str = json.dumps(data)
     resp = json.loads(json_str)
     _token, bot, chat_id, msg = resp['token'], resp['bot'], resp['chat_id'], resp['msg']
-    
+
     if authorize(_token):
         contents = urllib2.urlopen(base_url+bot+"/sendMessage?chat_id="+chat_id+"&text="+msg).read()
     else:
