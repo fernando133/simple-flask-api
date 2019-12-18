@@ -8,7 +8,9 @@ import os
 from flask import Flask, flash, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
-
+import datetime
+import calendar
+import time
 
 UPLOAD_FOLDER = '/home/inline/files'
 base_url = 'https://api.telegram.org/'
@@ -64,8 +66,8 @@ def nova_inscricao():
         if 'diploma' in request.files:
             diploma = request.files['diploma']
             if diploma.filename != '':
-                diploma = get_file_name(diploma.filename)
-                diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma))
+                diploma_name = get_file_name(diploma.filename)
+                diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma_name))
     except Exception as e:
         return tr(e)
 
