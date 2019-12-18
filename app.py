@@ -66,8 +66,8 @@ def nova_inscricao():
             if diploma.filename != '':
                 diploma = get_file_name(diploma.filename)
                 diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma))
-    except:
-        return 500
+    except Exception as e:
+        return tr(e)
 
     data = json.dumps(data)
     data = json.loads(data)
