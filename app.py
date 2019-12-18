@@ -74,7 +74,7 @@ def nova_inscricao():
     data = json.dumps(data)
     data = json.loads(data)
     lh = LeadHelper()
-    nova_iscricao = lh.nova_inscricao(data, historico_escolar.filename, diploma.filename)
+    nova_iscricao = lh.nova_inscricao(data, historico, diploma_name)
     if nova_inscricao:
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
     else:

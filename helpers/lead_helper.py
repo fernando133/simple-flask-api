@@ -62,7 +62,6 @@ class LeadHelper:
     def nova_inscricao(self, data, historico, diploma):
 
         try:
-            alert = True
             cursor = self.connection.cursor()
             now = datetime.datetime.utcnow()
             sql = "INSERT INTO inscricao (nome_completo, data_nascimento, rg, cpf, celular, email, \
@@ -78,10 +77,9 @@ class LeadHelper:
             cursor.execute(sql, val)
             self.connection.commit()
             print(cursor.rowcount, "inscricao realizada.")
-            if(alert):
-                th = TelegramHelper()
-                msg = "Nova+Inscricao:+Nome:+%s+e-mail+%s" %  (data['nome_completo'], data['email'])
-                th.broadcast_alert(msg)
-                return True
+            th = TelegramHelper()
+            msg = "Nova+Inscricao:+Nome:+%s+e-mail+%s" %  (data['nome_completo'], data['email'])
+            th.broadcast_alert(msg)
+            return True
         except:
-                return False
+            return False
