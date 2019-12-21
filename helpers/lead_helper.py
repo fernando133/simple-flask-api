@@ -64,22 +64,27 @@ class LeadHelper:
         try:
             cursor = self.connection.cursor()
             now = datetime.datetime.utcnow()
+
             sql = "INSERT INTO inscricao (nome_completo, data_nascimento, rg, cpf, celular, email, \
             rua, numero, bairro, estado, cidade, cep, complemento, escolaridade, formacao, foco_aulas, \
-            caminho_historico, caminho_diploma, lingua_estrangeira, assinatura, date_time) \
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            caminho_historico, caminho_diploma, lingua_estrangeira, assinatura, link_aula, date_time) \
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
             val = (data['nome_completo'], data['data_nascimento'], data['rg'], data['cpf'],\
             data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
             data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
             data['formacao'], data['foco_aulas'], historico, diploma,\
-            data['lingua_estrangeira'], data['assinatura'], now)
-            cursor.execute(sql, val)
-            self.connection.commit()
-            print(cursor.rowcount, "inscricao realizada.")
+            data['lingua_estrangeira'], data['assinatura'], data['link_aula'], now)
+
+            try:
+                cursor.execute(sql, val)
+                self.connection.commit()
+                print(cursor.rowcount, "inscricao realizada.")
+            except Exception as e:
+                print ("Não foi possivel realizar a operação: %s") % (e)
             th = TelegramHelper()
             msg = "Nova+Inscricao:+Nome:+%s+e-mail+%s" %  (data['nome_completo'], data['email'])
-            th.broadcast_alert(msg)
+            th.broadcast(msg)
             return True
         except:
             return False
