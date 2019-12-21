@@ -69,13 +69,13 @@ def nova_inscricao():
                 diploma_name = get_file_name(diploma.filename)
                 diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma_name))
     except Exception as e:
-        return tr(e)
+        print e
 
     data = json.dumps(data)
     data = json.loads(data)
     lh = LeadHelper()
-    nova_iscricao = lh.nova_inscricao(data, historico, diploma_name)
-
+    nova_inscricao = lh.nova_inscricao(data, historico, diploma_name)
+    nova_inscricao = bool(nova_inscricao)
     if nova_inscricao:
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
     else:

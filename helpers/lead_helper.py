@@ -80,11 +80,12 @@ class LeadHelper:
                 cursor.execute(sql, val)
                 self.connection.commit()
                 print(cursor.rowcount, "inscricao realizada.")
+                th = TelegramHelper()
+                msg = ("Nova+Inscricao:+Nome:+%s+e-mail+%s") % (data['nome_completo'], data['email'])
+                th.broadcast_alert(msg)
+                return True
             except Exception as e:
                 print ("Não foi possivel realizar a operação: %s") % (e)
-            th = TelegramHelper()
-            msg = "Nova+Inscricao:+Nome:+%s+e-mail+%s" %  (data['nome_completo'], data['email'])
-            th.broadcast(msg)
-            return True
+                return False
         except:
             return False
