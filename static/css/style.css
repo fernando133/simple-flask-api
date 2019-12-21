@@ -31,7 +31,8 @@
 }
 
 .logo img {
-  width: 100%;
+  width: 180px;
+  height: 80px;
   margin: 20px 0;
 }
 
@@ -47,6 +48,7 @@
 .apresentacao {
   background: #1621f2;
   color: #fff;
+  height: 320px;
 }
 
 .apresentacao div {
