@@ -4,6 +4,8 @@ from flask import request, jsonify
 import urllib2
 import json
 from helpers.lead_helper import LeadHelper
+from helpers.email_helper import EmailHelper
+
 import os
 from flask import Flask, flash, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
@@ -11,6 +13,7 @@ from flask_cors import CORS
 import datetime
 import calendar
 import time
+from flask_mail import Mail, Message
 
 UPLOAD_FOLDER = '/home/inline/files'
 base_url = 'https://api.telegram.org/'
@@ -18,6 +21,17 @@ TOKEN = '1234'
 
 app = Flask(__name__)
 CORS(app)
+
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": os.environ['EMAIL_USER'],
+    "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD']
+}
+app.config.update(mail_settings)
+mail = Mail(app)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -94,4 +108,9 @@ def broadcast_post():
         return "invalid token"
 
 if __name__ == '__main__':
+    with app.app_context():
+        email = EmailHelper(app)
+        recipients=["fernando.gmp@gmail.com"]
+        email.send_email("Teste", recipients, "Corpo do e-mail.")
+    
     app.run(host='0.0.0.0', port=5000)
