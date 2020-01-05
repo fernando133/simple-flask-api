@@ -1,8 +1,10 @@
 from flask_mail import Mail, Message
 import os
+from flask import render_template
+
 
 class EmailHelper:
-    
+
     def __init__(self, app):
         self.mail_settings = {
             "MAIL_SERVER": 'smtp.gmail.com',
@@ -21,7 +23,8 @@ class EmailHelper:
         print subject, recipients, body, self
         msg = Message(subject=subject,
                       sender=self.app.config.get("MAIL_USERNAME"),
-                      recipients=recipients, # replace with your email for testing
-                      body=body)
+                      recipients=recipients)
+
+        msg.html=render_template('inscricao-sucesso.html')
         
         self.e_mail.send(msg)

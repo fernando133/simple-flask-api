@@ -24,5 +24,3 @@ ALTER TABLE `inscricao`
 ADD COLUMN `assinatura` VARCHAR(45) NULL AFTER `date_time`,
 ADD COLUMN `lingua_estrangeira` VARCHAR(45) NULL AFTER `assinatura`;
 ADD COLUMN `link_aula` VARCHAR(500) NULL AFTER `lingua_estrangeira`;
-
-

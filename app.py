@@ -110,7 +110,9 @@ def broadcast_post():
 if __name__ == '__main__':
     with app.app_context():
         email = EmailHelper(app)
-        recipients=["fernando.gmp@gmail.com"]
+        dest = "fernando.gmp@gmail.com"
+        dest1 = "desenvolvimento@inlinetech.com.br"
+        recipients=[dest, dest1]
         email.send_email("Teste", recipients, "Corpo do e-mail.")
     
     app.run(host='0.0.0.0', port=5000)
