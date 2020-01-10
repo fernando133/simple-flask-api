@@ -59,7 +59,7 @@ class LeadHelper:
     def formata_inscricao():
         pass
 
-    def nova_inscricao(self, data, historico, diploma):
+    def nova_inscricao(self, data, historico, diploma, curriculo):
 
         try:
             cursor = self.connection.cursor()
@@ -67,14 +67,16 @@ class LeadHelper:
 
             sql = "INSERT INTO inscricao (nome_completo, data_nascimento, rg, cpf, celular, email, \
             rua, numero, bairro, estado, cidade, cep, complemento, escolaridade, formacao, foco_aulas, \
-            caminho_historico, caminho_diploma, lingua_estrangeira, assinatura, link_aula, date_time) \
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            caminho_historico, caminho_diploma, lingua_estrangeira, assinatura, link_aula, caminho_curriculo,\
+            link_lattes, date_time) \
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
             val = (data['nome_completo'], data['data_nascimento'], data['rg'], data['cpf'],\
             data['celular'], data['email'], data['rua'], data['numero'], data['bairro'],\
             data['estado'], data['cidade'], data['cep'], data['complemento'], data['escolaridade'],\
             data['formacao'], data['foco_aulas'], historico, diploma,\
-            data['lingua_estrangeira'], data['assinatura'], data['link_aula'], now)
+            data['lingua_estrangeira'], data['assinatura'], data['link_aula'], curriculo,\
+            data['link_lattes'], now)
 
             try:
                 cursor.execute(sql, val)

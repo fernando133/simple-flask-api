@@ -55,6 +55,7 @@ def nova_inscricao():
     data = request.form
     historico_escolar = None
     diploma = None
+    curriculo_name = None
 
     try:
         if 'historico_escolar' in request.files:
@@ -68,13 +69,20 @@ def nova_inscricao():
             if diploma.filename != '':
                 diploma_name = get_file_name(diploma.filename)
                 diploma.save(os.path.join(app.config['UPLOAD_FOLDER'], diploma_name))
+
+        if 'curriculo' in request.files:
+            curriculo = request.files['curriculo']
+            if curriculo.filename != '':
+                curriculo_name = get_file_name(curriculo.filename)
+                curriculo.save(os.path.join(app.config['UPLOAD_FOLDER'], curriculo_name))
+
     except Exception as e:
         print e
 
     data = json.dumps(data)
     data = json.loads(data)
     lh = LeadHelper()
-    nova_inscricao = lh.nova_inscricao(data, historico, diploma_name)
+    nova_inscricao = lh.nova_inscricao(data, historico, diploma_name, curriculo_name)
     nova_inscricao = bool(nova_inscricao)
     if nova_inscricao:
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
