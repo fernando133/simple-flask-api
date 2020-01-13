@@ -4,6 +4,7 @@ from flask import request, jsonify
 import urllib2
 import json
 from helpers.lead_helper import LeadHelper
+from helpers.telegram_helper import TelegramHelper
 import os
 from flask import Flask, flash, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
@@ -78,6 +79,9 @@ def nova_inscricao():
 
     except Exception as e:
         print e
+        th = TelegramHelper()
+        th.broadcast(str(e))
+        return render_template('inscricao-erro.html')
 
     data = json.dumps(data)
     data = json.loads(data)
@@ -87,6 +91,7 @@ def nova_inscricao():
     if nova_inscricao:
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
     else:
+        #write in file TODO
         return render_template('inscricao-erro.html')
 
 @app.route("/broadcast", methods=['POST'])

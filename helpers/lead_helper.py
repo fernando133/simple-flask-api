@@ -12,6 +12,13 @@ class LeadHelper:
         self.db = DBConnection()
         self.connection = self.db.get_connection()
 
+    def get_error_msg(self, error):
+        error = error.split(" ")
+        error_prc = 'err:+'
+        for item in error:
+            error_prc =  error_prc + item + '+'
+        return error_prc
+
     def str_to_bool(self, string):
         if string == 'True':
              return True
@@ -56,9 +63,6 @@ class LeadHelper:
         cursor.execute(sql)
         self.connection.commit()
 
-    def formata_inscricao():
-        pass
-
     def nova_inscricao(self, data, historico, diploma, curriculo):
 
         try:
@@ -77,17 +81,21 @@ class LeadHelper:
             data['formacao'], data['foco_aulas'], historico, diploma,\
             data['lingua_estrangeira'], data['assinatura'], data['link_aula'], curriculo,\
             data['link_lattes'], now)
-
+            th = TelegramHelper()
             try:
                 cursor.execute(sql, val)
                 self.connection.commit()
                 print(cursor.rowcount, "inscricao realizada.")
-                th = TelegramHelper()
                 msg = ("Nova+Inscricao:+Nome:+%s+e-mail+%s") % (data['nome_completo'].split(" ")[0], data['email'])
                 th.broadcast_alert(msg)
                 return True
             except Exception as e:
+                error = self.get_error_msg(str(e))
+                th.broadcast_alert(error)
                 print ("Não foi possivel realizar a operação: %s") % (e)
                 return False
-        except:
+        except Exception as e:
+            error = self.get_error_msg(str(e))
+            th.broadcast_alert(error)
+            print e
             return False
