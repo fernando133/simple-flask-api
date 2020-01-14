@@ -81,21 +81,23 @@ class LeadHelper:
             data['formacao'], data['foco_aulas'], historico, diploma,\
             data['lingua_estrangeira'], data['assinatura'], data['link_aula'], curriculo,\
             data['link_lattes'], now)
-            th = TelegramHelper()
             try:
                 cursor.execute(sql, val)
                 self.connection.commit()
                 print(cursor.rowcount, "inscricao realizada.")
                 msg = ("Nova+Inscricao:+Nome:+%s+e-mail+%s") % (data['nome_completo'].split(" ")[0], data['email'])
+                th = TelegramHelper()
                 th.broadcast_alert(msg)
                 return True
             except Exception as e:
                 error = self.get_error_msg(str(e))
+                th = TelegramHelper()
                 th.broadcast_alert(error)
                 print ("Não foi possivel realizar a operação: %s") % (e)
                 return False
         except Exception as e:
             error = self.get_error_msg(str(e))
+            th = TelegramHelper()
             th.broadcast_alert(error)
             print e
             return False
