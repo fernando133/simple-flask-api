@@ -22,6 +22,13 @@ CORS(app)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+def get_error_msg(error):
+    error = error.split(" ")
+    error_prc = 'err:+'
+    for item in error:
+        error_prc =  error_prc + item + '+'
+    return error_prc
+
 def authorize(_token):
     if _token == TOKEN:
         return True
@@ -79,8 +86,9 @@ def nova_inscricao():
 
     except Exception as e:
         print e
+        error = get_error_msg(str(e))
         th = TelegramHelper()
-        th.broadcast(str(e))
+        th.broadcast(error)
         return render_template('inscricao-erro.html')
 
     data = json.dumps(data)
@@ -91,20 +99,10 @@ def nova_inscricao():
     if nova_inscricao:
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
     else:
-        #write in file TODO
+        error = get_error_msg(str(e))
+        th = TelegramHelper()
+        th.broadcast(error)
         return render_template('inscricao-erro.html')
-
-@app.route("/broadcast", methods=['POST'])
-def broadcast_post():
-    data = request.json
-    json_str = json.dumps(data)
-    resp = json.loads(json_str)
-    _token, bot, chat_id, msg = resp['token'], resp['bot'], resp['chat_id'], resp['msg']
-
-    if authorize(_token):
-        contents = urllib2.urlopen(base_url+bot+"/sendMessage?chat_id="+chat_id+"&text="+msg).read()
-    else:
-        return "invalid token"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -64,7 +64,6 @@ class LeadHelper:
         self.connection.commit()
 
     def nova_inscricao(self, data, historico, diploma, curriculo):
-
         try:
             cursor = self.connection.cursor()
             now = datetime.datetime.utcnow()
