@@ -84,7 +84,8 @@ class LeadHelper:
                 cursor.execute(sql, val)
                 self.connection.commit()
                 print(cursor.rowcount, "inscricao realizada.")
-                msg = ("Nova+Inscricao:+Nome:+%s+e-mail+%s") % (data['nome_completo'].split(" ")[0], data['email'])
+                
+                msg = ("Nova+Inscricao:+e-mail+%s") % (data['email'])
                 th = TelegramHelper()
                 th.broadcast_alert(msg)
                 return True
