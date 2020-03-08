@@ -20,11 +20,12 @@ class EmailHelper:
 
 
     def send_email(self, subject, recipients, body):
-        print subject, recipients, body, self
+        #Exemplo de passsagem de paramentro para template
+        #
         msg = Message(subject=subject,
                       sender=self.app.config.get("MAIL_USERNAME"),
                       recipients=recipients)
 
-        msg.html=render_template('inscricao-sucesso.html')
+        msg.html=render_template('email-teste.html')
         
         self.e_mail.send(msg)
