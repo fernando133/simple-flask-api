@@ -23,6 +23,6 @@ class EmailHelper:
         msg = Message(subject=subject,
                       sender=self.app.config.get("MAIL_USERNAME"),
                       recipients=recipients)
-        msg.html=render_template('email-teste.html', email_body = body)
-        
+        msg.html=render_template('basic-email.html', email_body = body)
+
         self.e_mail.send(msg)
