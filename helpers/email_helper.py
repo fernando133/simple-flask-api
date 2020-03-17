@@ -13,7 +13,8 @@ class EmailHelper:
             "MAIL_USE_TLS": True,
             #"MAIL_USE_SSL": True,
             "MAIL_USERNAME": os.environ['EMAIL_USER'],
-            "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD']
+            "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD'],
+            "MAIL_DEFAULT_SENDER": "[EsporteCash]"
         }
         self.app = app
         self.app.config.update(self.mail_settings)
