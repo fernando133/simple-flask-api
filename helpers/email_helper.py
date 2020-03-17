@@ -23,7 +23,7 @@ class EmailHelper:
 
     def send_email(self, subject, recipients, body):
         msg = Message(subject=subject,
-                      sender=self.app.config.get("MAIL_USERNAME"),
+                      sender=('[EsporteCash]', self.app.config.get("MAIL_USERNAME")),
                       recipients=recipients)
         msg.html=render_template('basic-email.html', email_body = body)
 
