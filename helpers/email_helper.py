@@ -11,10 +11,8 @@ class EmailHelper:
             "MAIL_SERVER": os.environ['MAIL_SERVER'],
             "MAIL_PORT": os.environ['MAIL_PORT'],
             "MAIL_USE_TLS": True,
-            #"MAIL_USE_SSL": True,
             "MAIL_USERNAME": os.environ['EMAIL_USER'],
-            "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD'],
-            "MAIL_DEFAULT_SENDER": "[EsporteCash]"
+            "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD']
         }
         self.app = app
         self.app.config.update(self.mail_settings)
@@ -23,7 +21,7 @@ class EmailHelper:
 
     def send_email(self, subject, recipients, body):
         msg = Message(subject=subject,
-                      sender=('[EsporteCash]', self.app.config.get("MAIL_USERNAME")),
+                      sender=self.app.config.get("MAIL_USERNAME"),
                       recipients=recipients)
         msg.html=render_template('basic-email.html', email_body = body)
 
