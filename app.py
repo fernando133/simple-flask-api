@@ -25,7 +25,7 @@ def teste_email():
     return "200"
 
 @app.route("/enviar", methods=['POST'])
-@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
+@cross_origin(origin='localhost',headers=['Content-Type'])
 def enviar_email():
 	email = EmailHelper(app)
 	data = request.form

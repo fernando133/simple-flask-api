@@ -10,8 +10,8 @@ class EmailHelper:
         self.mail_settings = {
             "MAIL_SERVER": os.environ['MAIL_SERVER'],
             "MAIL_PORT": os.environ['MAIL_PORT'],
-            "MAIL_USE_TLS": True,
-            #"MAIL_USE_SSL": True,
+            #"MAIL_USE_TLS": True,
+            "MAIL_USE_SSL": True,
             "MAIL_USERNAME": os.environ['EMAIL_USER'],
             "MAIL_PASSWORD": os.environ['EMAIL_PASSWORD']
         }
