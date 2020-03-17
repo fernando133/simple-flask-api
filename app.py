@@ -8,10 +8,11 @@ from helpers.email_helper import EmailHelper
 import os
 from flask import Flask, flash, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
 CORS(app)
 
 @app.route("/testeEmail", methods=['GET', 'POST'])
@@ -24,6 +25,7 @@ def teste_email():
     return "200"
 
 @app.route("/enviar", methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
 def enviar_email():
 	email = EmailHelper(app)
 	data = request.form
@@ -38,4 +40,4 @@ def enviar_email():
 	return data
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='127.0.0.1', port=5000)
