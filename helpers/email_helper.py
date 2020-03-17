@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask_mail import Mail, Message
 import os
 from flask import render_template
