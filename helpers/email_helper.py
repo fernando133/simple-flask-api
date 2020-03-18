@@ -24,5 +24,5 @@ class EmailHelper:
                       sender=("EsporteCash", self.app.config.get("MAIL_USERNAME")),
                       recipients=recipients)
         msg.html=render_template('basic-email.html', email_body = body)
-        
+
         self.e_mail.send(msg)
