@@ -12,6 +12,7 @@ from flask_cors import CORS
 import datetime
 import calendar
 import time
+import requests
 
 UPLOAD_FOLDER = '/home/inline/files'
 base_url = 'https://api.telegram.org/'
@@ -97,6 +98,9 @@ def nova_inscricao():
     nova_inscricao = lh.nova_inscricao(data, historico, diploma_name, curriculo_name)
     nova_inscricao = bool(nova_inscricao)
     if nova_inscricao:
+        url = 'http://localhost:6000/enviar'
+        myobj = {'email': data['email'], 'assunto' : 'Inscrição Prof-e', 'mensagem' : data['nome_completo'], 'link_pagamento' : link_pagamento(data['foco_aulas'])}
+        x = requests.post(url, data = myobj)
         return render_template('inscricao-sucesso.html', link = link_pagamento(data['foco_aulas']))
     else:
         error = get_error_msg(str(e))
